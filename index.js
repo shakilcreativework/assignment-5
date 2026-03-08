@@ -59,8 +59,8 @@ async function renderIssues() {
             <div class="p-5 space-y-5">
                 <div class="flex justify-between items-center">
                     
-                    <img src="${issue.status === 'open' ? './assets/Open-Status.png' : './assets/Closed-Status.png'}" alt="">
-                    <button class="py-1 px-7 rounded-full text-[#EF4444] font-medium bg-[#EF4444]/50" >${priority}</button>
+                    <img src="${issue?.status === 'open' ? './assets/Open-Status.png' : './assets/Closed-Status.png'}" alt="">
+                    <button class="py-1 px-7 rounded-full font-medium ${priority == 'high' ? 'text-[#EF4444] bg-[#EF4444]/50' : priority == 'medium' ? 'text-[#F59E0B] bg-[#F59E0B]/50' : 'text-[#9CA3AF] bg-[#9CA3AF]/50'}" >${priority}</button>
                 </div>
                 <h2 class="font-semibold text-sm text-[#1F2937] capitalize">${title}</h2>
                 <p class="text-[#64748B] text-xs">${description}</p>
