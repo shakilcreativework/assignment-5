@@ -60,12 +60,14 @@ async function renderIssues() {
                 <div class="flex justify-between items-center">
                     
                     <img src="${issue?.status === 'open' ? './assets/Open-Status.png' : './assets/Closed-Status.png'}" alt="">
-                    <button class="py-1 px-7 rounded-full font-medium ${priority == 'high' ? 'text-[#EF4444] bg-[#EF4444]/50' : priority == 'medium' ? 'text-[#F59E0B] bg-[#F59E0B]/50' : 'text-[#9CA3AF] bg-[#9CA3AF]/50'}" >${priority}</button>
+                    <button class="py-1 uppercase px-7 rounded-full font-medium ${priority == 'high' ? 'text-[#EF4444] bg-[#EF4444]/50' : priority == 'medium' ? 'text-[#F59E0B] bg-[#F59E0B]/50' : 'text-[#9CA3AF] bg-[#9CA3AF]/50'}" >${priority}</button>
                 </div>
                 <h2 class="font-semibold text-sm text-[#1F2937] capitalize">${title}</h2>
                 <p class="text-[#64748B] text-xs">${description}</p>
                 <div id="badge" class="flex flex-wrap gap-2">
-                    ${badges}
+                    ${labels.map(lebel => `
+                        <button class="flex gap-1 items-center justify-center py-1 px-2 rounded-full uppercase text-xs text-[#EF4444] font-medium bg-[#EF4444]/50"><img class="w-5" src="./assets/Open-Status.png" alt="">${lebel}</button>
+                    `).join('')}
                 </div>
             </div>
 
