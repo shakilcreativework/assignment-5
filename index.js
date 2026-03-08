@@ -59,7 +59,7 @@ async function renderIssues() {
                 </div>
                 <h2 class="font-semibold text-sm text-[#1F2937] capitalize cursor-pointer" onclick="info(${id})">${title}</h2>
                 <p class="text-[#64748B] text-xs">${description}</p>
-                <div id="badge" class="flex flex-wrap gap-2">
+                <div class="flex flex-wrap gap-2">
                     ${labels.map(lebel => `
                         <button class="flex gap-1 items-center justify-center py-1 px-2 rounded-full uppercase text-xs font-medium ${lebel == 'bug' ? 'text-[#EF4444] bg-[#EF4444]/50 border border-[#EF4444]/40' : lebel == 'help wanted' ? 'text-[#F59E0B] bg-[#F59E0B]/50 border border-[#F59E0B]/40' : lebel == 'enhancement' ? 'text-[#00A96E] bg-[#00A96E]/50 border border-[#00A96E]/40' : lebel == 'documentation' ? 'text-violet-600 bg-violet-600/50 border border-violet-600/40' : lebel == 'good first issue' ? 'text-orange-600 bg-orange-600/50 border border-orange-600/40' :'text-[#9CA3AF] bg-[#9CA3AF]/50 border border-[#9CA3AF]/40'}"><i class="fa-solid fa-circle-exclamation text-sm"></i> ${lebel}</button>
                     `).join('')}
@@ -78,9 +78,41 @@ async function renderIssues() {
 
 };
 
-// modal code
-function info(id){
-    console.log(id);
+// get card information or details
+async function info(id){
+    const res = await fetch(api)
+    const data = await res.json()
+    
+    const issues = data?.data;
+    // console.log(issues);
+    
+    const findCardInfo = issues.find(issue => issue?.id === id);
+    displayModal(findCardInfo);
+};
+
+// load modal card details
+const displayModal = (cardInfo) => {
+    // console.log(cardInfo);
+    const {id, title, description, status, labels, priority, author, assignee, createdAt, updatedAt} = cardInfo;
+    console.log(status);
+    const createdDate = new Date(createdAt).toLocaleDateString();
+
+    const detailsContainer = document.getElementById('detailsContainer');
+    detailsContainer.innerHTML = `
+        <h2 class="font-semibold text-sm text-[#1F2937] capitalize">${title}</h2>
+        <div class="flex gap-3 items-center">
+            <p class="py-1 px-3 ${status === 'open' ? 'bg-[#00A96E]' : 'bg-[#A855F7]'} text-white">${status === 'open' ? 'Opened' : 'Closed'}</p>
+            <span class="w-1 h-1 bg-[#64748B] rounded-full"></span>
+            <p>${status === 'open' ? 'Opened' : 'Closed'} by ${author}</p>
+            <span class="w-1 h-1 bg-[#64748B] rounded-full"></span>
+            <p>${createdDate}</p>
+        </div>
+        <div class="flex flex-wrap gap-2">
+            ${labels.map(lebel => `
+                <button class="flex gap-1 items-center justify-center py-1 px-2 rounded-full uppercase text-xs font-medium ${lebel == 'bug' ? 'text-[#EF4444] bg-[#EF4444]/50 border border-[#EF4444]/40' : lebel == 'help wanted' ? 'text-[#F59E0B] bg-[#F59E0B]/50 border border-[#F59E0B]/40' : lebel == 'enhancement' ? 'text-[#00A96E] bg-[#00A96E]/50 border border-[#00A96E]/40' : lebel == 'documentation' ? 'text-violet-600 bg-violet-600/50 border border-violet-600/40' : lebel == 'good first issue' ? 'text-orange-600 bg-orange-600/50 border border-orange-600/40' :'text-[#9CA3AF] bg-[#9CA3AF]/50 border border-[#9CA3AF]/40'}"><i class="fa-solid fa-circle-exclamation text-sm"></i> ${lebel}</button>
+            `).join('')}
+        </div>
+    `;
 };
 
 // find all tap button by class name
