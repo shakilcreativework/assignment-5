@@ -57,7 +57,7 @@ async function renderIssues() {
                     <i class="text-xl ${issue?.status === 'open' ? 'fa-solid fa-circle-check text-[#00A96E]' : 'fa-regular fa-circle-check text-[#A855F7]'}"></i>
                     <button class="py-1 uppercase px-7 rounded-full font-medium ${priority == 'high' ? 'text-[#EF4444] bg-[#EF4444]/50' : priority == 'medium' ? 'text-[#F59E0B] bg-[#F59E0B]/50' : 'text-[#9CA3AF] bg-[#9CA3AF]/50'}" >${priority}</button>
                 </div>
-                <h2 class="font-semibold text-sm text-[#1F2937] capitalize">${title}</h2>
+                <h2 class="font-semibold text-sm text-[#1F2937] capitalize cursor-pointer" onclick="info(${id})">${title}</h2>
                 <p class="text-[#64748B] text-xs">${description}</p>
                 <div id="badge" class="flex flex-wrap gap-2">
                     ${labels.map(lebel => `
@@ -76,6 +76,11 @@ async function renderIssues() {
     });
         
 
+};
+
+// modal code
+function info(id){
+    console.log(id);
 };
 
 // find all tap button by class name
