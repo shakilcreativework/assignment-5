@@ -44,7 +44,7 @@ async function renderIssues() {
     filtered.forEach(issue => {
         // console.log(issue);
 
-        const {id, title, description, labels, priority, author, assignee, createdAt, updatedAt} = issue;
+        const {id, title, description, status, labels, priority, author, assignee, createdAt, updatedAt} = issue;
         const createdDate = new Date(createdAt).toLocaleDateString();
         // badge buttons
         // const badges = labels.map(lebel => `
@@ -53,7 +53,7 @@ async function renderIssues() {
 
         // create new card div
         const card = document.createElement("div");
-        card.className = "bg-white shadow-md rounded-lg border-t-4 border-[#00A96E]";
+        card.className = `bg-white shadow-md rounded-lg border-t-4 ${status == 'open' ? 'border-[#00A96E]' : 'border-[#A855F7]'}`;
 
         card.innerHTML = `
             <div class="p-5 space-y-5">
