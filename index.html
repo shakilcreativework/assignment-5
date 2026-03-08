@@ -37,12 +37,199 @@
 
     <!-- main -->
     <section class="bg-[#F8FAFC] min-h-[calc(100svh-80px)]">
-        <div class="max-w-[1110px] mx-auto py-10">
+        <div class="max-w-[1110px] mx-auto py-10 space-y-4">
             <!-- btn groups -->
             <div class="flex gap-3 bg-white rounded-lg p-5 justify-center md:justify-start">
-                <button class="tab-btn px-10 font-medium py-2 rounded bg-blue-600 text-white" data-tab="all">All</button>
+                <button class="tab-btn px-10 font-medium py-2 rounded bg-[#4A00FF] text-white" data-tab="all">All</button>
                 <button class="tab-btn px-10 font-medium py-2 rounded bg-gray-200" data-tab="open">Open</button>
                 <button class="tab-btn px-10 font-medium py-2 rounded bg-gray-200" data-tab="closed">Closed</button>
+            </div>
+
+            <!-- issues container -->
+            <div id="issues-container">
+                <!-- issues count dhashboard -->
+                <div id="count-issues" class="flex flex-col md:flex-row justify-center marker:justify-between gap-5 p-5 bg-white rounded-t-lg">
+                    <div class="flex flex-1 items-center gap-3 mx-auto">
+                        <img src="./assets/Aperture.png" alt="">
+                        <div>
+                            <h3 class="font-semibold text-xl text-[#1F2937]">50 Issues</h3>
+                            <span class="text-sm md:text-base text-[#64748B]">Track and manage your project issues</span>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 items-center justify-center">
+                        <div class="flex gap-1 items-center">
+                            <i class="fa-solid fa-circle text-xs text-[#00A96E]"></i>
+                            <p>Open</p>
+                        </div>
+                        <div class="flex gap-1 items-center">
+                            <i class="fa-solid fa-circle text-xs text-[#A855F7]"></i>
+                            <p>Closed</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- issues cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5 bg-[#FBFBFB] rounded-lg shadow p-5">
+                    <!-- card -->
+                    <div class="bg-white shadow-md rounded-lg border-t-4 border-[#00A96E]">
+                        <div class="p-5 space-y-5">
+                            <div class="flex justify-between items-center">
+                                <img src="./assets/Open-Status.png" alt="">
+                                <button class="py-1 px-7 rounded-full text-[#EF4444] font-medium bg-[#EF4444]/50" >High</button>
+                            </div>
+                            <h2 class="font-semibold text-sm text-[#1F2937] capitalize">Fix navigation menu on mobile devices</h2>
+                            <p class="text-[#64748B] text-xs">The navigation menu doesn't collapse properly on mobile devices...</p>
+                            <div id="badge" class="flex flex-wrap gap-2">
+                                <button class="flex gap-1 items-center justify-center py-1 px-2 rounded-full text-[#EF4444] font-medium bg-[#EF4444]/50"><img src="./assets/Open-Status.png" alt=""> High</button>
+                                <button class="flex gap-1 items-center justify-center py-1 px-2 rounded-full text-[#EF4444] font-medium bg-[#EF4444]/50"><img src="./assets/Open-Status.png" alt=""> High</button>
+                            </div>
+                        </div>
+
+                        <div class="p-5 border-t border-[#E4E4E7] space-y-2">
+                            <p class="text-[#64748B] text-xs">#1 by john_doe</p>
+                            <p class="text-[#64748B] text-xs">1/15/2024</p>
+                        </div>
+                    </div>
+                    <!-- card -->
+                    <div class="bg-white shadow-md rounded-lg border-t-4 border-[#00A96E]">
+                        <div class="p-5 space-y-5">
+                            <div class="flex justify-between items-center">
+                                <img src="./assets/Open-Status.png" alt="">
+                                <button class="py-1 px-7 rounded-full text-[#EF4444] font-medium bg-[#EF4444]/50" >High</button>
+                            </div>
+                            <h2 class="font-semibold text-sm text-[#1F2937] capitalize">Fix navigation menu on mobile devices</h2>
+                            <p class="text-[#64748B] text-xs">The navigation menu doesn't collapse properly on mobile devices...</p>
+                            <div id="badge" class="flex flex-wrap gap-2">
+                                <button class="flex gap-1 items-center justify-center py-1 px-2 rounded-full text-[#EF4444] font-medium bg-[#EF4444]/50"><img src="./assets/Open-Status.png" alt=""> High</button>
+                                <button class="flex gap-1 items-center justify-center py-1 px-2 rounded-full text-[#EF4444] font-medium bg-[#EF4444]/50"><img src="./assets/Open-Status.png" alt=""> High</button>
+                            </div>
+                        </div>
+
+                        <div class="p-5 border-t border-[#E4E4E7] space-y-2">
+                            <p class="text-[#64748B] text-xs">#1 by john_doe</p>
+                            <p class="text-[#64748B] text-xs">1/15/2024</p>
+                        </div>
+                    </div>
+                    <!-- card -->
+                    <div class="bg-white shadow-md rounded-lg border-t-4 border-[#00A96E]">
+                        <div class="p-5 space-y-5">
+                            <div class="flex justify-between items-center">
+                                <img src="./assets/Open-Status.png" alt="">
+                                <button class="py-1 px-7 rounded-full text-[#EF4444] font-medium bg-[#EF4444]/50" >High</button>
+                            </div>
+                            <h2 class="font-semibold text-sm text-[#1F2937] capitalize">Fix navigation menu on mobile devices</h2>
+                            <p class="text-[#64748B] text-xs">The navigation menu doesn't collapse properly on mobile devices...</p>
+                            <div id="badge" class="flex flex-wrap gap-2">
+                                <button class="flex gap-1 items-center justify-center py-1 px-2 rounded-full text-[#EF4444] font-medium bg-[#EF4444]/50"><img src="./assets/Open-Status.png" alt=""> High</button>
+                                <button class="flex gap-1 items-center justify-center py-1 px-2 rounded-full text-[#EF4444] font-medium bg-[#EF4444]/50"><img src="./assets/Open-Status.png" alt=""> High</button>
+                            </div>
+                        </div>
+
+                        <div class="p-5 border-t border-[#E4E4E7] space-y-2">
+                            <p class="text-[#64748B] text-xs">#1 by john_doe</p>
+                            <p class="text-[#64748B] text-xs">1/15/2024</p>
+                        </div>
+                    </div>
+                    <!-- card -->
+                    <div class="bg-white shadow-md rounded-lg border-t-4 border-[#00A96E]">
+                        <div class="p-5 space-y-5">
+                            <div class="flex justify-between items-center">
+                                <img src="./assets/Open-Status.png" alt="">
+                                <button class="py-1 px-7 rounded-full text-[#EF4444] font-medium bg-[#EF4444]/50" >High</button>
+                            </div>
+                            <h2 class="font-semibold text-sm text-[#1F2937] capitalize">Fix navigation menu on mobile devices</h2>
+                            <p class="text-[#64748B] text-xs">The navigation menu doesn't collapse properly on mobile devices...</p>
+                            <div id="badge" class="flex flex-wrap gap-2">
+                                <button class="flex gap-1 items-center justify-center py-1 px-2 rounded-full text-[#EF4444] font-medium bg-[#EF4444]/50"><img src="./assets/Open-Status.png" alt=""> High</button>
+                                <button class="flex gap-1 items-center justify-center py-1 px-2 rounded-full text-[#EF4444] font-medium bg-[#EF4444]/50"><img src="./assets/Open-Status.png" alt=""> High</button>
+                            </div>
+                        </div>
+
+                        <div class="p-5 border-t border-[#E4E4E7] space-y-2">
+                            <p class="text-[#64748B] text-xs">#1 by john_doe</p>
+                            <p class="text-[#64748B] text-xs">1/15/2024</p>
+                        </div>
+                    </div>
+                    <!-- card -->
+                    <div class="bg-white shadow-md rounded-lg border-t-4 border-[#00A96E]">
+                        <div class="p-5 space-y-5">
+                            <div class="flex justify-between items-center">
+                                <img src="./assets/Open-Status.png" alt="">
+                                <button class="py-1 px-7 rounded-full text-[#EF4444] font-medium bg-[#EF4444]/50" >High</button>
+                            </div>
+                            <h2 class="font-semibold text-sm text-[#1F2937] capitalize">Fix navigation menu on mobile devices</h2>
+                            <p class="text-[#64748B] text-xs">The navigation menu doesn't collapse properly on mobile devices...</p>
+                            <div id="badge" class="flex flex-wrap gap-2">
+                                <button class="flex gap-1 items-center justify-center py-1 px-2 rounded-full text-[#EF4444] font-medium bg-[#EF4444]/50"><img src="./assets/Open-Status.png" alt=""> High</button>
+                                <button class="flex gap-1 items-center justify-center py-1 px-2 rounded-full text-[#EF4444] font-medium bg-[#EF4444]/50"><img src="./assets/Open-Status.png" alt=""> High</button>
+                            </div>
+                        </div>
+
+                        <div class="p-5 border-t border-[#E4E4E7] space-y-2">
+                            <p class="text-[#64748B] text-xs">#1 by john_doe</p>
+                            <p class="text-[#64748B] text-xs">1/15/2024</p>
+                        </div>
+                    </div>
+                    <!-- card -->
+                    <div class="bg-white shadow-md rounded-lg border-t-4 border-[#00A96E]">
+                        <div class="p-5 space-y-5">
+                            <div class="flex justify-between items-center">
+                                <img src="./assets/Open-Status.png" alt="">
+                                <button class="py-1 px-7 rounded-full text-[#EF4444] font-medium bg-[#EF4444]/50" >High</button>
+                            </div>
+                            <h2 class="font-semibold text-sm text-[#1F2937] capitalize">Fix navigation menu on mobile devices</h2>
+                            <p class="text-[#64748B] text-xs">The navigation menu doesn't collapse properly on mobile devices...</p>
+                            <div id="badge" class="flex flex-wrap gap-2">
+                                <button class="flex gap-1 items-center justify-center py-1 px-2 rounded-full text-[#EF4444] font-medium bg-[#EF4444]/50"><img src="./assets/Open-Status.png" alt=""> High</button>
+                                <button class="flex gap-1 items-center justify-center py-1 px-2 rounded-full text-[#EF4444] font-medium bg-[#EF4444]/50"><img src="./assets/Open-Status.png" alt=""> High</button>
+                            </div>
+                        </div>
+
+                        <div class="p-5 border-t border-[#E4E4E7] space-y-2">
+                            <p class="text-[#64748B] text-xs">#1 by john_doe</p>
+                            <p class="text-[#64748B] text-xs">1/15/2024</p>
+                        </div>
+                    </div>
+                    <!-- card -->
+                    <div class="bg-white shadow-md rounded-lg border-t-4 border-[#00A96E]">
+                        <div class="p-5 space-y-5">
+                            <div class="flex justify-between items-center">
+                                <img src="./assets/Open-Status.png" alt="">
+                                <button class="py-1 px-7 rounded-full text-[#EF4444] font-medium bg-[#EF4444]/50" >High</button>
+                            </div>
+                            <h2 class="font-semibold text-sm text-[#1F2937] capitalize">Fix navigation menu on mobile devices</h2>
+                            <p class="text-[#64748B] text-xs">The navigation menu doesn't collapse properly on mobile devices...</p>
+                            <div id="badge" class="flex flex-wrap gap-2">
+                                <button class="flex gap-1 items-center justify-center py-1 px-2 rounded-full text-[#EF4444] font-medium bg-[#EF4444]/50"><img src="./assets/Open-Status.png" alt=""> High</button>
+                                <button class="flex gap-1 items-center justify-center py-1 px-2 rounded-full text-[#EF4444] font-medium bg-[#EF4444]/50"><img src="./assets/Open-Status.png" alt=""> High</button>
+                            </div>
+                        </div>
+
+                        <div class="p-5 border-t border-[#E4E4E7] space-y-2">
+                            <p class="text-[#64748B] text-xs">#1 by john_doe</p>
+                            <p class="text-[#64748B] text-xs">1/15/2024</p>
+                        </div>
+                    </div>
+                    <!-- card -->
+                    <div class="bg-white shadow-md rounded-lg border-t-4 border-[#00A96E]">
+                        <div class="p-5 space-y-5">
+                            <div class="flex justify-between items-center">
+                                <img src="./assets/Open-Status.png" alt="">
+                                <button class="py-1 px-7 rounded-full text-[#EF4444] font-medium bg-[#EF4444]/50" >High</button>
+                            </div>
+                            <h2 class="font-semibold text-sm text-[#1F2937] capitalize">Fix navigation menu on mobile devices</h2>
+                            <p class="text-[#64748B] text-xs">The navigation menu doesn't collapse properly on mobile devices...</p>
+                            <div id="badge" class="flex flex-wrap gap-2">
+                                <button class="flex gap-1 items-center justify-center py-1 px-2 rounded-full text-[#EF4444] font-medium bg-[#EF4444]/50"><img src="./assets/Open-Status.png" alt=""> High</button>
+                                <button class="flex gap-1 items-center justify-center py-1 px-2 rounded-full text-[#EF4444] font-medium bg-[#EF4444]/50"><img src="./assets/Open-Status.png" alt=""> High</button>
+                            </div>
+                        </div>
+
+                        <div class="p-5 border-t border-[#E4E4E7] space-y-2">
+                            <p class="text-[#64748B] text-xs">#1 by john_doe</p>
+                            <p class="text-[#64748B] text-xs">1/15/2024</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
