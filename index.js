@@ -4,22 +4,6 @@ const api = 'https://phi-lab-server.vercel.app/api/v1/lab/issues';
 let currentTab = "all";
 const container = document.getElementById("issuesContainer");
 
-// {
-//     "id": 1,
-//     "title": "Fix navigation menu on mobile devices",
-//     "description": "The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior.",
-//     "status": "open",
-//     "labels": [
-//         "bug",
-//         "help wanted"
-//     ],
-//     "priority": "high",
-//     "author": "john_doe",
-//     "assignee": "jane_smith",
-//     "createdAt": "2024-01-15T10:30:00Z",
-//     "updatedAt": "2024-01-15T10:30:00Z"
-// }
-
 // render all issues and show in UI
 async function renderIssues() {
     container.innerHTML = '';
@@ -61,13 +45,40 @@ async function renderIssues() {
                 <p class="text-[#64748B] text-xs">${description}</p>
                 <div class="flex flex-wrap gap-2">
                     ${labels.map(lebel => `
-                        <span class="flex gap-1 items-center justify-center py-1 px-2 rounded-full uppercase text-xs font-medium ${lebel == 'bug' ? 'text-[#EF4444] bg-[#EF4444]/20 border border-[#EF4444]/40' : lebel == 'help wanted' ? 'text-[#F59E0B] bg-[#F59E0B]/20 border border-[#F59E0B]/40' : lebel == 'enhancement' ? 'text-[#00A96E] bg-[#00A96E]/20 border border-[#00A96E]/40' : lebel == 'documentation' ? 'text-violet-600 bg-violet-600/20 border border-violet-600/40' : lebel == 'good first issue' ? 'text-orange-600 bg-orange-600/20 border border-orange-600/40' :'text-[#9CA3AF] bg-[#9CA3AF]/20 border border-[#9CA3AF]/40'}"><i class="fa-solid fa-circle-exclamation text-sm"></i> ${lebel}</span>
+                        <span class="flex gap-1 items-center justify-center py-1 px-2 rounded-full uppercase text-xs font-medium
+                        ${lebel == 'bug'
+                        ? 'text-[#EF4444] bg-[#EF4444]/20 border border-[#EF4444]/40'
+                        : lebel == 'help wanted'
+                        ? 'text-[#F59E0B] bg-[#F59E0B]/20 border border-[#F59E0B]/40'
+                        : lebel == 'enhancement'
+                        ? 'text-[#00A96E] bg-[#00A96E]/20 border border-[#00A96E]/40'
+                        : lebel == 'documentation'
+                        ? 'text-violet-600 bg-violet-600/20 border border-violet-600/40'
+                        : lebel == 'good first issue'
+                        ? 'text-orange-600 bg-orange-600/20 border border-orange-600/40'
+                        : 'text-[#9CA3AF] bg-[#9CA3AF]/20 border border-[#9CA3AF]/40'}">
+
+                        ${lebel == 'bug'
+                        ? '<i class="fa-solid fa-bug"></i>'
+                        : lebel == 'help wanted'
+                        ? '<i class="fa-solid fa-lines-leaning"></i>'
+                        : lebel == 'enhancement'
+                        ? '<i class="fa-solid fa-wand-magic-sparkles"></i>'
+                        : lebel == 'documentation'
+                        ? '<i class="fa-solid fa-book-medical"></i>'
+                        : lebel == 'good first issue'
+                        ? '<i class="fa-solid fa-thumbs-up"></i>'
+                        : '<i class="fa-solid fa-circle-exclamation"></i>'}
+
+                        ${lebel}
+
+                        </span>
                     `).join('')}
                 </div>
             </div>
 
             <div class="p-5 border-t border-[#E4E4E7] space-y-2">
-                <p class="text-[#64748B] text-xs">#1 by ${author}</p>
+                <p class="text-[#64748B] text-xs">#1 by <span class="capitalize">${author.replaceAll('_', ' ')}</span></p>
                 <p class="text-[#64748B] text-xs">${createdDate}</p>
             </div>
         `;
@@ -84,7 +95,6 @@ async function info(id){
     const data = await res.json()
     
     const issues = data?.data;
-    // console.log(issues);
     
     const findCardInfo = issues.find(issue => issue?.id === id);
     displayModal(findCardInfo);
@@ -92,10 +102,11 @@ async function info(id){
 
 // load modal card details
 const displayModal = (cardInfo) => {
-    // console.log(cardInfo);
     const {id, title, description, status, labels, priority, author, assignee, createdAt, updatedAt} = cardInfo;
     console.log(status);
     const createdDate = new Date(createdAt).toLocaleDateString();
+
+    
 
     const detailsContainer = document.getElementById('detailsContainer');
     detailsContainer.innerHTML = `
@@ -108,8 +119,35 @@ const displayModal = (cardInfo) => {
             <p class="text-[#64748B] text-xs ">${createdDate}</p>
         </div>
         <div class="flex flex-wrap gap-2">
-            ${labels.map(lebel => `
-                <span class="flex gap-1 items-center justify-center py-1 px-2 rounded-full uppercase text-xs font-medium ${lebel == 'bug' ? 'text-[#EF4444] bg-[#EF4444]/20 border border-[#EF4444]/40' : lebel == 'help wanted' ? 'text-[#F59E0B] bg-[#F59E0B]/20 border border-[#F59E0B]/40' : lebel == 'enhancement' ? 'text-[#00A96E] bg-[#00A96E]/20 border border-[#00A96E]/40' : lebel == 'documentation' ? 'text-violet-600 bg-violet-600/20 border border-violet-600/40' : lebel == 'good first issue' ? 'text-orange-600 bg-orange-600/20 border border-orange-600/40' :'text-[#9CA3AF] bg-[#9CA3AF]/20 border border-[#9CA3AF]/40'}"><i class="fa-solid fa-circle-exclamation text-sm"></i> ${lebel}</span>
+            ${labels.map(label => `
+                <span class="flex gap-1 items-center justify-center py-1 px-2 rounded-full uppercase text-xs font-medium
+                ${label == 'bug'
+                ? 'text-[#EF4444] bg-[#EF4444]/20 border border-[#EF4444]/40'
+                : label == 'help wanted'
+                ? 'text-[#F59E0B] bg-[#F59E0B]/20 border border-[#F59E0B]/40'
+                : label == 'enhancement'
+                ? 'text-[#00A96E] bg-[#00A96E]/20 border border-[#00A96E]/40'
+                : label == 'documentation'
+                ? 'text-violet-600 bg-violet-600/20 border border-violet-600/40'
+                : label == 'good first issue'
+                ? 'text-orange-600 bg-orange-600/20 border border-orange-600/40'
+                : 'text-[#9CA3AF] bg-[#9CA3AF]/20 border border-[#9CA3AF]/40'}">
+
+                ${label == 'bug'
+                ? '<i class="fa-solid fa-bug"></i>'
+                : label == 'help wanted'
+                ? '<i class="fa-solid fa-lines-leaning"></i>'
+                : label == 'enhancement'
+                ? '<i class="fa-solid fa-wand-magic-sparkles"></i>'
+                : label == 'documentation'
+                ? '<i class="fa-solid fa-book-medical"></i>'
+                : label == 'good first issue'
+                ? '<i class="fa-solid fa-thumbs-up"></i>'
+                : '<i class="fa-solid fa-circle-exclamation"></i>'}
+
+                ${label}
+
+                </span>
             `).join('')}
         </div>
         <p class="text-[#64748B]">${description}</p>
@@ -129,7 +167,6 @@ const displayModal = (cardInfo) => {
 
 // find all tap button by class name
 document.querySelectorAll('.tab-btn').forEach(btn => {
-    // console.log(btn);
     btn.addEventListener('click', function(){
         console.log('btn clicked!', btn);
         document.querySelectorAll('.tab-btn').forEach(b => {
