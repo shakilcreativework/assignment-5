@@ -101,18 +101,30 @@ const displayModal = (cardInfo) => {
     detailsContainer.innerHTML = `
         <h2 class="font-semibold text-sm text-[#1F2937] capitalize">${title}</h2>
         <div class="flex gap-3 items-center">
-            <p class="py-1 px-3 ${status === 'open' ? 'bg-[#00A96E]' : 'bg-[#A855F7]'} text-white">${status === 'open' ? 'Opened' : 'Closed'}</p>
+            <p class="text-xs py-1 px-3 rounded-full ${status === 'open' ? 'bg-[#00A96E]' : 'bg-[#A855F7]'} text-white">${status === 'open' ? 'Opened' : 'Closed'}</p>
             <span class="w-1 h-1 bg-[#64748B] rounded-full"></span>
-            <p>${status === 'open' ? 'Opened' : 'Closed'} by ${author}</p>
+            <p class="text-[#64748B] text-xs ">${status === 'open' ? 'Opened' : 'Closed'} by ${author}</p>
             <span class="w-1 h-1 bg-[#64748B] rounded-full"></span>
-            <p>${createdDate}</p>
+            <p class="text-[#64748B] text-xs ">${createdDate}</p>
         </div>
         <div class="flex flex-wrap gap-2">
             ${labels.map(lebel => `
                 <button class="flex gap-1 items-center justify-center py-1 px-2 rounded-full uppercase text-xs font-medium ${lebel == 'bug' ? 'text-[#EF4444] bg-[#EF4444]/20 border border-[#EF4444]/40' : lebel == 'help wanted' ? 'text-[#F59E0B] bg-[#F59E0B]/20 border border-[#F59E0B]/40' : lebel == 'enhancement' ? 'text-[#00A96E] bg-[#00A96E]/20 border border-[#00A96E]/40' : lebel == 'documentation' ? 'text-violet-600 bg-violet-600/20 border border-violet-600/40' : lebel == 'good first issue' ? 'text-orange-600 bg-orange-600/20 border border-orange-600/40' :'text-[#9CA3AF] bg-[#9CA3AF]/20 border border-[#9CA3AF]/40'}"><i class="fa-solid fa-circle-exclamation text-sm"></i> ${lebel}</button>
             `).join('')}
         </div>
+        <p class="text-[#64748B]">${description}</p>
+        <div class="grid grid-cols-2 bg-[#F8FAFC] rounded-lg p-5">
+            <div class="space-y-3">
+                <p class="text-[#64748B] ">Assignee:</p>
+                <p class="text-[#1F2937] capitalize font-semibold">${author?.replaceAll("_", " ")}</p>
+            </div>
+            <div class="space-y-3">
+                <p class="text-[#64748B] ">Priority:</p>
+                <button class="py-1 uppercase px-7 rounded-full font-medium ${priority == 'high' ? 'text-[#EF4444] bg-[#EF4444]/20' : priority == 'medium' ? 'text-[#F59E0B] bg-[#F59E0B]/20' : 'text-[#9CA3AF] bg-[#9CA3AF]/20'}" >${priority}</button>
+            </div>
+        </div>
     `;
+    document.getElementById('card_info').showModal();
 };
 
 // find all tap button by class name
