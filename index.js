@@ -46,10 +46,6 @@ async function renderIssues() {
 
         const {id, title, description, status, labels, priority, author, assignee, createdAt, updatedAt} = issue;
         const createdDate = new Date(createdAt).toLocaleDateString();
-        // badge buttons
-        // const badges = labels.map(lebel => `
-        //         <button class="flex gap-1 items-center justify-center py-1 px-2 rounded-full uppercase text-xs text-[#EF4444] font-medium bg-[#EF4444]/50"><img class="w-5" src="./assets/Open-Status.png" alt="">${lebel}</button>
-        //     `).join('');
 
         // create new card div
         const card = document.createElement("div");
@@ -65,7 +61,7 @@ async function renderIssues() {
                 <p class="text-[#64748B] text-xs">${description}</p>
                 <div id="badge" class="flex flex-wrap gap-2">
                     ${labels.map(lebel => `
-                        <button class="flex gap-1 items-center justify-center py-1 px-2 rounded-full uppercase text-xs font-medium ${lebel == 'bug' ? 'text-[#EF4444] bg-[#EF4444]/50 border border-[#EF4444]/40' : lebel == 'help wanted' ? 'text-[#F59E0B] bg-[#F59E0B]/50 border border-[#F59E0B]/40' : lebel == 'enhancement' ? 'text-[#00A96E] bg-[#00A96E]/50 border border-[#00A96E]/40' : lebel == 'documentation' ? 'text-violet-600 bg-violet-600/50 border border-violet-600/40' : lebel == 'good first issue' ? 'text-orange-600 bg-orange-600/50 border border-orange-600/40' :'text-[#9CA3AF] bg-[#9CA3AF]/50 border border-[#9CA3AF]/40'}"><img class="w-5" src="./assets/Open-Status.png" alt="">${lebel}</button>
+                        <button class="flex gap-1 items-center justify-center py-1 px-2 rounded-full uppercase text-xs font-medium ${lebel == 'bug' ? 'text-[#EF4444] bg-[#EF4444]/50 border border-[#EF4444]/40' : lebel == 'help wanted' ? 'text-[#F59E0B] bg-[#F59E0B]/50 border border-[#F59E0B]/40' : lebel == 'enhancement' ? 'text-[#00A96E] bg-[#00A96E]/50 border border-[#00A96E]/40' : lebel == 'documentation' ? 'text-violet-600 bg-violet-600/50 border border-violet-600/40' : lebel == 'good first issue' ? 'text-orange-600 bg-orange-600/50 border border-orange-600/40' :'text-[#9CA3AF] bg-[#9CA3AF]/50 border border-[#9CA3AF]/40'}"><i class="fa-solid fa-circle-exclamation text-sm"></i> ${lebel}</button>
                     `).join('')}
                 </div>
             </div>
