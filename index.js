@@ -55,13 +55,13 @@ async function renderIssues() {
             <div class="p-5 space-y-5">
                 <div class="flex justify-between items-center">
                     <i class="text-xl ${issue?.status === 'open' ? 'fa-solid fa-circle-check text-[#00A96E]' : 'fa-regular fa-circle-check text-[#A855F7]'}"></i>
-                    <button class="py-1 uppercase px-7 rounded-full font-medium ${priority == 'high' ? 'text-[#EF4444] bg-[#EF4444]/50' : priority == 'medium' ? 'text-[#F59E0B] bg-[#F59E0B]/50' : 'text-[#9CA3AF] bg-[#9CA3AF]/50'}" >${priority}</button>
+                    <button class="py-1 uppercase px-7 rounded-full font-medium ${priority == 'high' ? 'text-[#EF4444] bg-[#EF4444]/20' : priority == 'medium' ? 'text-[#F59E0B] bg-[#F59E0B]/20' : 'text-[#9CA3AF] bg-[#9CA3AF]/20'}" >${priority}</button>
                 </div>
                 <h2 class="font-semibold text-sm text-[#1F2937] capitalize cursor-pointer" onclick="info(${id})">${title}</h2>
                 <p class="text-[#64748B] text-xs">${description}</p>
                 <div class="flex flex-wrap gap-2">
                     ${labels.map(lebel => `
-                        <button class="flex gap-1 items-center justify-center py-1 px-2 rounded-full uppercase text-xs font-medium ${lebel == 'bug' ? 'text-[#EF4444] bg-[#EF4444]/50 border border-[#EF4444]/40' : lebel == 'help wanted' ? 'text-[#F59E0B] bg-[#F59E0B]/50 border border-[#F59E0B]/40' : lebel == 'enhancement' ? 'text-[#00A96E] bg-[#00A96E]/50 border border-[#00A96E]/40' : lebel == 'documentation' ? 'text-violet-600 bg-violet-600/50 border border-violet-600/40' : lebel == 'good first issue' ? 'text-orange-600 bg-orange-600/50 border border-orange-600/40' :'text-[#9CA3AF] bg-[#9CA3AF]/50 border border-[#9CA3AF]/40'}"><i class="fa-solid fa-circle-exclamation text-sm"></i> ${lebel}</button>
+                        <button class="flex gap-1 items-center justify-center py-1 px-2 rounded-full uppercase text-xs font-medium ${lebel == 'bug' ? 'text-[#EF4444] bg-[#EF4444]/20 border border-[#EF4444]/40' : lebel == 'help wanted' ? 'text-[#F59E0B] bg-[#F59E0B]/20 border border-[#F59E0B]/40' : lebel == 'enhancement' ? 'text-[#00A96E] bg-[#00A96E]/20 border border-[#00A96E]/40' : lebel == 'documentation' ? 'text-violet-600 bg-violet-600/20 border border-violet-600/40' : lebel == 'good first issue' ? 'text-orange-600 bg-orange-600/20 border border-orange-600/40' :'text-[#9CA3AF] bg-[#9CA3AF]/20 border border-[#9CA3AF]/40'}"><i class="fa-solid fa-circle-exclamation text-sm"></i> ${lebel}</button>
                     `).join('')}
                 </div>
             </div>
@@ -109,7 +109,7 @@ const displayModal = (cardInfo) => {
         </div>
         <div class="flex flex-wrap gap-2">
             ${labels.map(lebel => `
-                <button class="flex gap-1 items-center justify-center py-1 px-2 rounded-full uppercase text-xs font-medium ${lebel == 'bug' ? 'text-[#EF4444] bg-[#EF4444]/50 border border-[#EF4444]/40' : lebel == 'help wanted' ? 'text-[#F59E0B] bg-[#F59E0B]/50 border border-[#F59E0B]/40' : lebel == 'enhancement' ? 'text-[#00A96E] bg-[#00A96E]/50 border border-[#00A96E]/40' : lebel == 'documentation' ? 'text-violet-600 bg-violet-600/50 border border-violet-600/40' : lebel == 'good first issue' ? 'text-orange-600 bg-orange-600/50 border border-orange-600/40' :'text-[#9CA3AF] bg-[#9CA3AF]/50 border border-[#9CA3AF]/40'}"><i class="fa-solid fa-circle-exclamation text-sm"></i> ${lebel}</button>
+                <button class="flex gap-1 items-center justify-center py-1 px-2 rounded-full uppercase text-xs font-medium ${lebel == 'bug' ? 'text-[#EF4444] bg-[#EF4444]/20 border border-[#EF4444]/40' : lebel == 'help wanted' ? 'text-[#F59E0B] bg-[#F59E0B]/20 border border-[#F59E0B]/40' : lebel == 'enhancement' ? 'text-[#00A96E] bg-[#00A96E]/20 border border-[#00A96E]/40' : lebel == 'documentation' ? 'text-violet-600 bg-violet-600/20 border border-violet-600/40' : lebel == 'good first issue' ? 'text-orange-600 bg-orange-600/20 border border-orange-600/40' :'text-[#9CA3AF] bg-[#9CA3AF]/20 border border-[#9CA3AF]/40'}"><i class="fa-solid fa-circle-exclamation text-sm"></i> ${lebel}</button>
             `).join('')}
         </div>
     `;
