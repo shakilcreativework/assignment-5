@@ -57,7 +57,7 @@ const issuesLoads = (issue) => {
         </div>
 
         <div class="p-5 border-t border-[#E4E4E7] space-y-2">
-            <p class="text-[#64748B] text-xs">#1 by <span class="capitalize">${author.replaceAll('_', ' ')}</span></p>
+            <p class="text-[#64748B] text-xs">#1 by <span class="capitalize">${author}</span></p>
             <p class="text-[#64748B] text-xs">${createdDate}</p>
         </div>
     `;
@@ -190,7 +190,7 @@ const displayModal = (cardInfo) => {
         <div class="grid grid-cols-2 bg-[#F8FAFC] rounded-lg p-5">
             <div class="space-y-3">
                 <p class="text-[#64748B] ">Assignee:</p>
-                <p class="text-[#1F2937] capitalize font-semibold">${author?.replaceAll("_", " ")}</p>
+                <p class="text-[#1F2937] capitalize font-semibold">${assignee ? assignee?.replaceAll("_", " ") : author?.replaceAll("_", " ")}</p>
             </div>
             <div class="space-y-3">
                 <p class="text-[#64748B] ">Priority:</p>
