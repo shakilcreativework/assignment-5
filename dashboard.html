@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/github-logo.png" type="image/x-icon">
+    <title>GitHub Issues Tracker</title>
+    <!-- daisyUI and tailwind -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- google font -->
+</head>
+<body class="font-geist">
+    <!-- header -->
+    <header class="shadow-md">
+        <div class="max-w-[1440px] flex flex-col sm:flex-row justify-between items-center py-5 mx-auto gap-5 px-4 lg:px-0">
+            <div class="flex gap-2 items-center">
+                <img class="w-9" src="./assets/github-logo.png" alt="">
+                <h2 class="font-semibold text-2xl text-[#1F2937]">GitHub Issues Tracker</h2>
+            </div>
+            <div>
+            <div class="join">
+                <div>
+                    <label class="input validator join-item">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input id="inputText" type="text" placeholder="Search issues..." required />
+                    </label>
+                </div>
+                    <button onclick="searchMatch()" class="btn btn-primary join-item">Search</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- main -->
+    <section class="bg-[#F8FAFC] min-h-[calc(100svh-80px)]">
+        <div class="max-w-[1280px] mx-auto py-10 space-y-4">
+            <!-- btn groups -->
+            <div class="flex gap-3 bg-white rounded-lg p-5 justify-center md:justify-start">
+                <button class="tab-btn px-6 md:px-10 font-medium py-2 rounded bg-[#4A00FF] text-white" data-tab="all">All</button>
+                <button class="tab-btn px-6 md:px-10 font-medium py-2 rounded bg-gray-200" data-tab="open">Open</button>
+                <button class="tab-btn px-6 md:px-10 font-medium py-2 rounded bg-gray-200" data-tab="closed">Closed</button>
+            </div>
+
+            <!-- loading spin -->
+            <div class="flex justify-center items-center">
+                <span id="loadingIcon" class="loading loading-ring loading-xl"></span>
+            </div>
+
+            <!-- issues container -->
+            <div id="issuesSection">
+                <!-- issues count dhashboard -->
+                <div id="countIssues" class="flex flex-col md:flex-row justify-center marker:justify-between gap-5 p-5 bg-white rounded-t-lg">
+                    <div class="flex flex-1 items-center gap-3 mx-auto">
+                        <img src="./assets/Aperture.png" alt="">
+                        <div>
+                            <h3 id="issueCount" class="font-semibold text-xl text-[#1F2937]">50 Issues</h3>
+                            <span class="text-sm md:text-base text-[#64748B]">Track and manage your project issues</span>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 items-center justify-center">
+                        <div class="flex gap-1 items-center">
+                            <i class="fa-solid fa-circle text-xs text-[#00A96E]"></i>
+                            <p>Open</p>
+                        </div>
+                        <div class="flex gap-1 items-center">
+                            <i class="fa-solid fa-circle text-xs text-[#A855F7]"></i>
+                            <p>Closed</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- issues cards -->
+                <div id="issuesContainer" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5 bg-[#FBFBFB] rounded-lg shadow p-5">
+                    <!-- card -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- modal -->
+    <dialog id="card_info" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box">
+        <!-- modal container -->
+        <div id="detailsContainer" class="space-y-5">
+
+        </div>
+        <div class="modal-action">
+            <form method="dialog">
+                <!-- if there is a button in form, it will close the modal -->
+                <button class="btn btn-primary">Close</button>
+            </form>
+        </div>
+    </div>
+    </dialog>
+
+    <!-- js file -->
+    <script src="index.js"></script>
+</body>
+</html>
