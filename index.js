@@ -150,7 +150,7 @@ const displayModal = (cardInfo) => {
         <div class="flex gap-3 items-center">
             <p class="text-xs py-1 px-3 rounded-full ${status === 'open' ? 'bg-[#00A96E]' : 'bg-[#A855F7]'} text-white">${status === 'open' ? 'Opened' : 'Closed'}</p>
             <span class="w-1 h-1 bg-[#64748B] rounded-full"></span>
-            <p class="text-[#64748B] text-xs ">${status === 'open' ? 'Opened' : 'Closed'} by ${author}</p>
+            <p class="text-[#64748B] text-xs capitalize">${status === 'open' ? 'Opened' : 'Closed'} by ${assignee ? assignee?.replaceAll("_", " ") : author?.replaceAll("_", " ")}</p>
             <span class="w-1 h-1 bg-[#64748B] rounded-full"></span>
             <p class="text-[#64748B] text-xs ">${createdDate}</p>
         </div>
