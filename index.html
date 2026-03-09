@@ -25,11 +25,10 @@
                 <div>
                     <label class="input validator join-item">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" placeholder="Search issues..." required />
+                    <input id="inputText" type="text" placeholder="Search issues..." required />
                     </label>
-                    <div class="validator-hint hidden">Enter valid email address</div>
                 </div>
-                <button class="btn btn-primary join-item">Search</button>
+                    <button onclick="searchMatch()" class="btn btn-primary join-item">Search</button>
                 </div>
             </div>
         </div>
@@ -76,8 +75,6 @@
     </section>
 
     <!-- modal -->
-    <!-- Open the modal using ID.showModal() method -->
-    <button class="btn" onclick="my_modal_5.showModal()">open modal</button>
     <dialog id="card_info" class="modal modal-bottom sm:modal-middle">
     <div class="modal-box">
         <!-- modal container -->

@@ -5,97 +5,20 @@ let currentTab = "all";
 const container = document.getElementById("issuesContainer");
 
 // Issues Loads
-const issuesLoads = (issue) => {
-
-    const {id, title, description, status, labels, priority, author, assignee, createdAt, updatedAt} = issue;
-    const createdDate = new Date(createdAt).toLocaleDateString();
-
-    // create new card div
-    const card = document.createElement("div");
-    card.className = `bg-white shadow-md rounded-lg border-t-4 ${status == 'open' ? 'border-[#00A96E]' : 'border-[#A855F7]'}`;
-
-    card.innerHTML = `
-        <div class="p-5 space-y-5">
-            <div class="flex justify-between items-center">
-                <i class="text-xl ${issue?.status === 'open' ? 'fa-solid fa-circle-check text-[#00A96E]' : 'fa-regular fa-circle-check text-[#A855F7]'}"></i>
-                <button class="py-1 uppercase px-7 rounded-full font-medium ${priority == 'high' ? 'text-[#EF4444] bg-[#EF4444]/20' : priority == 'medium' ? 'text-[#F59E0B] bg-[#F59E0B]/20' : 'text-[#9CA3AF] bg-[#9CA3AF]/20'}" >${priority}</button>
-            </div>
-            <h2 class="font-semibold text-sm text-[#1F2937] capitalize cursor-pointer" onclick="info(${id})">${title}</h2>
-            <p class="text-[#64748B] text-xs">${description}</p>
-            <div class="flex flex-wrap gap-2">
-                ${labels.map(lebel => `
-                    <span class="flex gap-1 items-center justify-center py-1 px-2 rounded-full uppercase text-xs font-medium
-                    ${lebel == 'bug'
-                    ? 'text-[#EF4444] bg-[#EF4444]/20 border border-[#EF4444]/40'
-                    : lebel == 'help wanted'
-                    ? 'text-[#F59E0B] bg-[#F59E0B]/20 border border-[#F59E0B]/40'
-                    : lebel == 'enhancement'
-                    ? 'text-[#00A96E] bg-[#00A96E]/20 border border-[#00A96E]/40'
-                    : lebel == 'documentation'
-                    ? 'text-violet-600 bg-violet-600/20 border border-violet-600/40'
-                    : lebel == 'good first issue'
-                    ? 'text-orange-600 bg-orange-600/20 border border-orange-600/40'
-                    : 'text-[#9CA3AF] bg-[#9CA3AF]/20 border border-[#9CA3AF]/40'}">
-
-                    ${lebel == 'bug'
-                    ? '<i class="fa-solid fa-bug"></i>'
-                    : lebel == 'help wanted'
-                    ? '<i class="fa-solid fa-lines-leaning"></i>'
-                    : lebel == 'enhancement'
-                    ? '<i class="fa-solid fa-wand-magic-sparkles"></i>'
-                    : lebel == 'documentation'
-                    ? '<i class="fa-solid fa-book-medical"></i>'
-                    : lebel == 'good first issue'
-                    ? '<i class="fa-solid fa-thumbs-up"></i>'
-                    : '<i class="fa-solid fa-circle-exclamation"></i>'}
-
-                    ${lebel}
-
-                    </span>
-                `).join('')}
-            </div>
-        </div>
-
-        <div class="p-5 border-t border-[#E4E4E7] space-y-2">
-            <p class="text-[#64748B] text-xs">#1 by <span class="capitalize">${author.replaceAll('_', ' ')}</span></p>
-            <p class="text-[#64748B] text-xs">${createdDate}</p>
-        </div>
-    `;
-
-    container.appendChild(card);
-};
-
-// remove button styles
-const removeStyle = () => {
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove("bg-[#4A00FF]", "text-white");
-        btn.classList.add('bg-gray-200');
-    });
-};
-
-// search results
-const searchMatch = async () => {
-    removeStyle();
-    container.innerHTML = '';
-
-    const searchText = document.getElementById("inputText").value;
-    const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchText}`);
-    const data = await res.json();
-
-    const issues = data?.data;
+const issuesLoads = () => {
     
-    issues.forEach(issue => issuesLoads(issue));
-    document.getElementById('issueCount').innerText = `${issues?.length} Issues`;
 };
 
 // render all issues and show in UI
 async function renderIssues() {
     container.innerHTML = '';
 
+    // console.log(api);
     const res = await fetch(api)
     const data = await res.json()
 
     const issues = data?.data;
+    // console.log(issues);
 
     let filtered;
     if(currentTab === "all"){
@@ -107,7 +30,68 @@ async function renderIssues() {
         document.getElementById('issueCount').innerText = `${filtered?.length} Issues`;
     }
 
-    filtered.forEach(issue => issuesLoads(issue));
+    filtered.forEach(issue => {
+        // console.log(issue);
+
+        const {id, title, description, status, labels, priority, author, assignee, createdAt, updatedAt} = issue;
+        const createdDate = new Date(createdAt).toLocaleDateString();
+
+        // create new card div
+        const card = document.createElement("div");
+        card.className = `bg-white shadow-md rounded-lg border-t-4 ${status == 'open' ? 'border-[#00A96E]' : 'border-[#A855F7]'}`;
+
+        card.innerHTML = `
+            <div class="p-5 space-y-5">
+                <div class="flex justify-between items-center">
+                    <i class="text-xl ${issue?.status === 'open' ? 'fa-solid fa-circle-check text-[#00A96E]' : 'fa-regular fa-circle-check text-[#A855F7]'}"></i>
+                    <button class="py-1 uppercase px-7 rounded-full font-medium ${priority == 'high' ? 'text-[#EF4444] bg-[#EF4444]/20' : priority == 'medium' ? 'text-[#F59E0B] bg-[#F59E0B]/20' : 'text-[#9CA3AF] bg-[#9CA3AF]/20'}" >${priority}</button>
+                </div>
+                <h2 class="font-semibold text-sm text-[#1F2937] capitalize cursor-pointer" onclick="info(${id})">${title}</h2>
+                <p class="text-[#64748B] text-xs">${description}</p>
+                <div class="flex flex-wrap gap-2">
+                    ${labels.map(lebel => `
+                        <span class="flex gap-1 items-center justify-center py-1 px-2 rounded-full uppercase text-xs font-medium
+                        ${lebel == 'bug'
+                        ? 'text-[#EF4444] bg-[#EF4444]/20 border border-[#EF4444]/40'
+                        : lebel == 'help wanted'
+                        ? 'text-[#F59E0B] bg-[#F59E0B]/20 border border-[#F59E0B]/40'
+                        : lebel == 'enhancement'
+                        ? 'text-[#00A96E] bg-[#00A96E]/20 border border-[#00A96E]/40'
+                        : lebel == 'documentation'
+                        ? 'text-violet-600 bg-violet-600/20 border border-violet-600/40'
+                        : lebel == 'good first issue'
+                        ? 'text-orange-600 bg-orange-600/20 border border-orange-600/40'
+                        : 'text-[#9CA3AF] bg-[#9CA3AF]/20 border border-[#9CA3AF]/40'}">
+
+                        ${lebel == 'bug'
+                        ? '<i class="fa-solid fa-bug"></i>'
+                        : lebel == 'help wanted'
+                        ? '<i class="fa-solid fa-lines-leaning"></i>'
+                        : lebel == 'enhancement'
+                        ? '<i class="fa-solid fa-wand-magic-sparkles"></i>'
+                        : lebel == 'documentation'
+                        ? '<i class="fa-solid fa-book-medical"></i>'
+                        : lebel == 'good first issue'
+                        ? '<i class="fa-solid fa-thumbs-up"></i>'
+                        : '<i class="fa-solid fa-circle-exclamation"></i>'}
+
+                        ${lebel}
+
+                        </span>
+                    `).join('')}
+                </div>
+            </div>
+
+            <div class="p-5 border-t border-[#E4E4E7] space-y-2">
+                <p class="text-[#64748B] text-xs">#1 by <span class="capitalize">${author.replaceAll('_', ' ')}</span></p>
+                <p class="text-[#64748B] text-xs">${createdDate}</p>
+            </div>
+        `;
+
+        container.appendChild(card);
+    });
+        
+
 };
 
 // get card information or details
@@ -124,6 +108,7 @@ async function info(id){
 // load modal card details
 const displayModal = (cardInfo) => {
     const {id, title, description, status, labels, priority, author, assignee, createdAt, updatedAt} = cardInfo;
+    console.log(status);
     const createdDate = new Date(createdAt).toLocaleDateString();
 
     
@@ -188,10 +173,7 @@ const displayModal = (cardInfo) => {
 // find all tap button by class name
 document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', function(){
-        // set empty if search input field in has anything
-        let searchText = document.getElementById("inputText");
-        searchText.value = '';
-
+        console.log('btn clicked!', btn);
         document.querySelectorAll('.tab-btn').forEach(b => {
             b.classList.remove("bg-[#4A00FF]", "text-white");
             b.classList.add('bg-gray-200');
