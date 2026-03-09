@@ -39,9 +39,14 @@
         <div class="max-w-[1280px] mx-auto py-10 space-y-4">
             <!-- btn groups -->
             <div class="flex gap-3 bg-white rounded-lg p-5 justify-center md:justify-start">
-                <button class="tab-btn px-10 font-medium py-2 rounded bg-[#4A00FF] text-white" data-tab="all">All</button>
-                <button class="tab-btn px-10 font-medium py-2 rounded bg-gray-200" data-tab="open">Open</button>
-                <button class="tab-btn px-10 font-medium py-2 rounded bg-gray-200" data-tab="closed">Closed</button>
+                <button class="tab-btn px-6 md:px-10 font-medium py-2 rounded bg-[#4A00FF] text-white" data-tab="all">All</button>
+                <button class="tab-btn px-6 md:px-10 font-medium py-2 rounded bg-gray-200" data-tab="open">Open</button>
+                <button class="tab-btn px-6 md:px-10 font-medium py-2 rounded bg-gray-200" data-tab="closed">Closed</button>
+            </div>
+
+            <!-- loading spin -->
+            <div class="flex justify-center items-center">
+                <span id="loadingIcon" class="loading loading-ring loading-xl"></span>
             </div>
 
             <!-- issues container -->

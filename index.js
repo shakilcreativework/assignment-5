@@ -65,6 +65,18 @@ const issuesLoads = (issue) => {
     container.appendChild(card);
 };
 
+// loading function
+const loadingIcon = (spin) => {
+    const loadIcon = document.getElementById('loadingIcon');
+
+    if(spin === true){
+        loadIcon.classList.remove('hidden');
+    }else{
+        loadIcon.classList.add('hidden');
+    }
+    // console.log(loadIcon);
+};
+
 // remove button styles
 const removeStyle = () => {
     document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -75,6 +87,7 @@ const removeStyle = () => {
 
 // search results
 const searchMatch = async () => {
+    loadingIcon(true);
     removeStyle();
     container.innerHTML = '';
 
@@ -83,13 +96,15 @@ const searchMatch = async () => {
     const data = await res.json();
 
     const issues = data?.data;
-    
+
     issues.forEach(issue => issuesLoads(issue));
     document.getElementById('issueCount').innerText = `${issues?.length} Issues`;
+    loadingIcon(false);
 };
 
 // render all issues and show in UI
 async function renderIssues() {
+    loadingIcon(true);
     container.innerHTML = '';
 
     const res = await fetch(api)
@@ -108,6 +123,7 @@ async function renderIssues() {
     }
 
     filtered.forEach(issue => issuesLoads(issue));
+    loadingIcon(false);
 };
 
 // get card information or details
